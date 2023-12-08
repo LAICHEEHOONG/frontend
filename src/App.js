@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { changePages } from './store/actions/changePage';
 import './App.css';
+import List from './page/list';
+import FourOFour from './page/fourOfour';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(changePages(1));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<List />} ></Route>
+        <Route path='*' element={<FourOFour />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
+

@@ -1,0 +1,18 @@
+.nav_input {
+    max-width: 300px !important;
+}
+
+.date_picker {
+    margin-right: 10px;
+    margin-top: -8px;
+    max-width: 400px;
+}
+
+.clear_btn {
+    margin-left: 10px;
+}
+
+@media screen and (max-width: 700px) {
+
+  }
+  
