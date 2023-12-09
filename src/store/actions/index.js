@@ -4,6 +4,8 @@ import {
     CHANGE_SEARCH_PAGE, CHANGE_TABLE, SEARCH_RESET, SEARCH_PROGRESS, SUBMIT
 } from '../type';
 
+import { add8hour } from '../../util/tool';
+
 export const submitAction = (booleaN) => ({
     type: SUBMIT,
     payload: booleaN
@@ -50,11 +52,13 @@ export const setSearchText = (text) => ({
 export const setDateStart = (startDate) => ({
     type: SEARCH_DATE_START,
     payload: startDate
+    // payload: add8hour(startDate)
 })
 
 export const setDateEnd = (endDate) => ({
     type: SEARCH_DATE_END,
     payload: endDate
+    // payload: add8hour(endDate)
 })
 
 export const setAlert = (booleaN) => ({

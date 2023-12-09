@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import { tableCellClasses } from '@mui/material/TableCell';
 import CircularIndeterminate from "./progress";
-import { toMalaysiaTime } from "../util/tool";
+import { toMalaysiaTime, convertDateFormat } from "../util/tool";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -22,56 +22,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
         fontSize: 14,
     },
 }));
-
-// function convertDateFormat(dateString) {
-//     // Create a Date object from the input string
-//     const date = new Date(dateString);
-  
-//     // Extract the necessary components
-//     const month = date.getMonth() + 1; // Month starts from 0, so add 1
-//     const day = date.getDate();
-//     const year = date.getFullYear();
-//     const hours = date.getHours();
-//     const minutes = date.getMinutes();
-//     const seconds = date.getSeconds();
-  
-//     // Format the date in the desired way
-//     const formattedDate = `${month}/${day}/${year} , ${hours}:${minutes}:${seconds}`;
-  
-//     return formattedDate;
-//   }
-  
-  // Usage
-//   const inputDateString = "Mon Nov 20 2023 21:58:08 GMT+0800 (Malaysia Time)";
-//   const convertedDate = convertDateFormat(inputDateString);
-//   console.log(convertedDate);
-  
-
-// const toMalaysiaTime = (time) => {
-//     const utcTimestamp = time;
-//     const dateInUTC = new Date(utcTimestamp);
-
-//     // Convert UTC time to Malaysia Time (UTC +8)
-//     const malaysiaTime = new Date(dateInUTC.getTime() + (8 * 60 * 60 * 1000)); // Adding 8 hours in milliseconds
-
-//     // Formatting the Malaysia Time
-//     const options = {
-//         year: 'numeric',
-//         month: 'numeric',
-//         day: 'numeric',
-//         hour: 'numeric',
-//         minute: 'numeric',
-//         second: 'numeric',
-//         hour12: false,
-//         timeZone: 'Asia/Kuala_Lumpur' // Setting the timezone
-//     };
-
-//     const malaysiaTimeFormatted = new Intl.DateTimeFormat('en-GB', options).format(malaysiaTime);
-//     // console.log(malaysiaTimeFormatted); // Outputting the formatted Malaysia Time
-//     // console.log(convertDateFormat(malaysiaTime))
-//     return convertDateFormat(malaysiaTime);
-// }
-
 
 const TableList = () => {
 
@@ -95,8 +45,8 @@ const TableList = () => {
                                     <StyledTableCell>Status</StyledTableCell>
                                     <StyledTableCell align="center">Target Group</StyledTableCell>
                                     <StyledTableCell>Content</StyledTableCell>
-                                    <StyledTableCell>Create Date</StyledTableCell>
-                    
+                                    <StyledTableCell>Created Date</StyledTableCell>
+                         
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -121,10 +71,12 @@ const TableList = () => {
                                                     <TableCell>
                                                         {el.content.length > 20 ? el.content.substring(0, 20) + '...' : el.content}
                                                     </TableCell>
-                                                    <TableCell>
+                                                    {/* <TableCell>
                                                         {el.created ? toMalaysiaTime(el.created) : null}
+                                                    </TableCell> */}
+                                                    <TableCell>
+                                                        {el.created ? convertDateFormat(el.created) : null}
                                                     </TableCell>
-                                          
                                                 </TableRow>
 
 

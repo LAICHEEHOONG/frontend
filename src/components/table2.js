@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import { tableCellClasses } from '@mui/material/TableCell';
-import { toMalaysiaTime } from "../util/tool";
+import { toMalaysiaTime, convertDateFormat } from "../util/tool";
 import CircularIndeterminate from "./progress";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -69,8 +69,8 @@ const TableList2 = () => {
                                     <StyledTableCell>Status</StyledTableCell>
                                     <StyledTableCell align="center">Target Group</StyledTableCell>
                                     <StyledTableCell>Content</StyledTableCell>
-                                    <StyledTableCell>Create Date</StyledTableCell>
-
+                                    <StyledTableCell>Created Date</StyledTableCell>
+                                    {/* <StyledTableCell>UTC Date</StyledTableCell> */}
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -94,8 +94,11 @@ const TableList2 = () => {
                                                     <TableCell>
                                                         {el.content.length > 20 ? el.content.substring(0, 20) + '...' : el.content}
                                                     </TableCell>
-                                                    <TableCell>
+                                                    {/* <TableCell>
                                                         {el.created ? toMalaysiaTime(el.created) : null}
+                                                    </TableCell> */}
+                                                    <TableCell>
+                                                        {el.created ? convertDateFormat(el.created) : null}
                                                     </TableCell>
 
                                                 </TableRow>

@@ -35,9 +35,9 @@ export function addOneDay(date) {
     let newDate = date;
     newDate.setDate(newDate.getDate() + 1);
     return newDate;
-  }
-  
-function convertDateFormat(dateString) {
+}
+
+export function convertDateFormat(dateString) {
     // Create a Date object from the input string
     const date = new Date(dateString);
 
@@ -53,4 +53,11 @@ function convertDateFormat(dateString) {
     const formattedDate = `${month}/${day}/${year} , ${hours}:${minutes}:${seconds}`;
 
     return formattedDate;
+}
+
+export const add8hour = (date) => {
+
+    const dateInUTC = new Date(date);
+    let result = new Date(dateInUTC.getTime() + (8 * 60 * 60 * 1000));
+    return result;
 }
