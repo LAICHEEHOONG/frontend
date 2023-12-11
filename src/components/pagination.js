@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
-import { Pagination, Stack, Typography } from '@mui/material';
+import React, { useEffect } from 'react';
+import { Pagination, Stack } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { allPages } from '../store/actions/allpage_action';
 import { changePages } from '../store/actions/changePage';
-import { searchText, clearText } from "../store/actions";
+import { clearText } from "../store/actions";
+// import { searchText, clearText } from "../store/actions";
 
 const Pages = () => {
     const dispatch = useDispatch();
@@ -13,16 +14,15 @@ const Pages = () => {
     }, [dispatch]);
     const allPage = useSelector(state => state.page.allPage);
 
-
     const handleChange = (event, value) => {
         dispatch(clearText());
         dispatch(changePages(value));
-        dispatch(searchText([]));
+        // dispatch(searchText([]));
     };
 
     return (
         <Stack spacing={2}>
-            <Pagination count={allPage}  onChange={handleChange} />
+            <Pagination count={allPage} onChange={handleChange} />
         </Stack>
     );
 }

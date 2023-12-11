@@ -1,7 +1,6 @@
-export const TEST = 'test';
+
 export const PAGE = 'page';
 export const ALLPAGE = 'allpage';
-export const SEARCH = 'search';
 export const CLEARPAGE = 'clearpage';
 export const ALERT = 'alert';
 export const SEARCH2 = 'search2';
@@ -16,4 +15,4 @@ export const CHANGE_SEARCH_PAGE = 'changeSearchPage';
 export const CHANGE_TABLE = 'changeTable';
 export const SEARCH_RESET = 'searchReset';
 export const SEARCH_PROGRESS = 'searchProgress';
-export const SUBMIT = 'submit';
+

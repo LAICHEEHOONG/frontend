@@ -11,4 +11,3 @@ export default function CircularIndeterminate() {
 }
 
 
-//justifyContent: 'center', alignItems: 'center', height: '100vh'

@@ -1,75 +1,84 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { searchText, setAlert } from "../store/actions";
-
-
-
-const filterData = (searchQuery, oriData) => {
-    const result = oriData.filter((el) => {
-        return (
-            el.title.toLowerCase().includes(searchQuery.toLowerCase())
-            ||
-            el.content.toLowerCase().includes(searchQuery.toLowerCase())
-            ||
-            el.status.toLowerCase().includes(searchQuery.toLowerCase())
-            ||
-            el.targetGroup.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-    })
-    return result;
-}
+import { useSelector, useDispatch } from "react-redux";
+import BasicDateRangePicker from "./datePicker";
+import { search2Fn } from "../util/tool";
+import {
+    setSearchText, setSearchResData, clearResData,
+    setAlert, searchAllPage, changeTableAction, searchResetAction,
+    searchProgressAction, changeSearchPage
+} from "../store/actions";
+import '../style/navbar2.css';
 
 
 const Navbar = () => {
 
-    const listData = useSelector(state => state.page.pageNum);
-    let showFilterData = useSelector(state => state.search.text);
-    let alertStatus = useSelector(state => state.alert) ;
-
     const dispatch = useDispatch();
-    const [inputValue, setInputValue] = useState('');
-    const handleInputChange = (event) => {
-        const value = event.target.value;
-        setInputValue(value);
-        if (value === '' || !value) {
-            dispatch(searchText(filterData(value, [])));
-   
-        } else {
-            dispatch(searchText(filterData(value, listData)));
-        }
-
-        if (showFilterData.length === 0 && value.length > 1) {
-            dispatch(setAlert(true));
-   
-        }
-
-    };
+    let searchData = useSelector(state => state.search2);
+    const [disableBtn, setDisableBtn] = useState(false);
 
     useEffect(() => {
-
-        if(alertStatus) {
-            setTimeout(() => {
-                dispatch(setAlert(false));
-            }, 3000)
+        if (searchData.text === '' && searchData.startDate === '' && searchData.endDate === '') {
+            setDisableBtn(true)
+        } else {
+            setDisableBtn(false)
         }
-    }, [alertStatus])
+    }, [searchData])
 
-    const clearInput = (e) => {
-        e.preventDefault();
-        setInputValue('');
-        dispatch(searchText([]));
+    const handleInputChange = (event) => {
+        const value = event.target.value;
+        dispatch(setSearchText(value));
+    };
+
+    const submitHandle = (event) => {
+        event.preventDefault();
+        dispatch(changeSearchPage(1));
+        dispatch(changeTableAction(false));
+        dispatch(searchProgressAction(true));
+
+        search2Fn({...searchData, page: 1})
+            .then(data => {
+                dispatch(searchAllPage(data[1].allPage))
+                if (data[0].length === 0) {
+                    dispatch(setAlert(true));
+                    setTimeout(() => {
+                        dispatch(setAlert(false));
+                        dispatch(searchProgressAction(false));
+                    }, 4000)
+                }
+                dispatch(setSearchResData(data[0]))
+                dispatch(searchProgressAction(false));
+            })
+            .catch(err => {
+                console.log(err);
+                searchProgressAction(false);
+            });
+
+
+    }
+
+    const clearSearchFn = (event) => {
+        // event.preventDefault();
+        dispatch(changeTableAction(true));
+        dispatch(clearResData());
+        dispatch(searchResetAction());
     }
 
     return (
         <nav className="navbar bg-body-tertiary">
             <div className="container-fluid">
                 <form className="d-flex" role="search">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                    <input className="form-control me-2 nav_input" type="search" placeholder="Search Title" aria-label="Search"
                         onChange={handleInputChange}
-                        value={inputValue}
                     />
-                    <button className="btn btn-outline-danger"
-                        onClick={clearInput}
+                    <div className="date_picker">
+                        <BasicDateRangePicker />
+                    </div>
+
+                    <button className="btn btn-success" disabled={disableBtn}
+                        onClick={submitHandle}
+                    >Search</button>
+                    <button className="btn btn-danger clear_btn" disabled={disableBtn}
+                        onClick={clearSearchFn}
                     >Clear</button>
                 </form>
             </div>

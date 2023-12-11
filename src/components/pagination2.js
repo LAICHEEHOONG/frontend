@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Pagination, Stack } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { paginationSearchPage } from "../store/actions/changeSearhPage";
@@ -7,7 +7,6 @@ import { changeSearchPage } from '../store/actions';
 
 const Pages2 = () => {
 
-
     const dispatch = useDispatch();
     const allSearchPages = useSelector(state => state.search2);
 
@@ -15,20 +14,6 @@ const Pages2 = () => {
         dispatch(changeSearchPage(value))
         dispatch(paginationSearchPage(value));
     };
-
-    // useEffect(() => {
-    //     console.log(`Current Page: ${allSearchPages.page}`)
-    // }, [allSearchPages.page])
-
-
-
-
- 
-
- 
-
-
-
 
     return (
         <Stack spacing={2}>

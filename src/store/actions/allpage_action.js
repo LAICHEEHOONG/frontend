@@ -7,7 +7,6 @@ export const allPages = () => {
         try {
             const pages = await axios.get('/api/page');
             const result = pages.data;
-            // console.log(result)
             dispatch(action.allPage(result));
         } catch(err) {
             console.log(err);
@@ -17,21 +16,4 @@ export const allPages = () => {
 
 
 
-
-// import * as chinese from './index';
-// import axios from 'axios';
-
-// export const chineseData = () => {
-//     return async (dispatch, getState) => {
-//         try {
-//             const chinese_data = await axios.get('/api/chinese');
-//             const data = chinese_data.data;
-//             // console.log(data);
-//             dispatch(chinese.chineseData(data));
-//         } catch (error) {
-//             console.error('Request chinese data error.', error);
-//         }
-//     }
-
-// }
 

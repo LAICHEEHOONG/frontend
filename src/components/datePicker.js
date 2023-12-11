@@ -17,11 +17,9 @@ export default function BasicDateRangePicker() {
         
         if(startDate) {
             startDate = startDate.$d;
-            console.log(`startDate: ${startDate}`);
         }
         if(endDate) {
             endDate = endDate.$d;
-            console.log(`endDate: ${endDate}`);
         }
 
         setSelectedDateRange([startDate, endDate]);

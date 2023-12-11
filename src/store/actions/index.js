@@ -1,15 +1,10 @@
 import {
-    ALLPAGE, PAGE, SEARCH, CLEARPAGE, ALERT, SEARCH_TEXT,
+    ALLPAGE, PAGE, CLEARPAGE, ALERT, SEARCH_TEXT,
     SEARCH_DATE_START, SEARCH_DATE_END, SEARCH_RES_DATA, CLEAR_RES_DATA, SEARCH_ALL_PAGE,
-    CHANGE_SEARCH_PAGE, CHANGE_TABLE, SEARCH_RESET, SEARCH_PROGRESS, SUBMIT
+    CHANGE_SEARCH_PAGE, CHANGE_TABLE, SEARCH_RESET, SEARCH_PROGRESS
 } from '../type';
 
-import { add8hour } from '../../util/tool';
 
-export const submitAction = (booleaN) => ({
-    type: SUBMIT,
-    payload: booleaN
-})
 
 export const searchProgressAction = (booleaN) => ({
     type: SEARCH_PROGRESS,
@@ -52,13 +47,11 @@ export const setSearchText = (text) => ({
 export const setDateStart = (startDate) => ({
     type: SEARCH_DATE_START,
     payload: startDate
-    // payload: add8hour(startDate)
 })
 
 export const setDateEnd = (endDate) => ({
     type: SEARCH_DATE_END,
     payload: endDate
-    // payload: add8hour(endDate)
 })
 
 export const setAlert = (booleaN) => ({
@@ -74,11 +67,6 @@ export const allPage = (total) => ({
 export const changePage = (pageNum) => ({
     type: PAGE,
     payload: pageNum
-})
-
-export const searchText = (text) => ({
-    type: SEARCH,
-    payload: text
 })
 
 export const clearText = () => ({

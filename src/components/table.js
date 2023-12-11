@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import { tableCellClasses } from '@mui/material/TableCell';
 import CircularIndeterminate from "./progress";
-import { toMalaysiaTime, convertDateFormat } from "../util/tool";
+import { convertDateFormat } from "../util/tool";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -46,21 +46,17 @@ const TableList = () => {
                                     <StyledTableCell align="center">Target Group</StyledTableCell>
                                     <StyledTableCell>Content</StyledTableCell>
                                     <StyledTableCell>Created Date</StyledTableCell>
-                         
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-
-
                                 {
 
                                     searchQuery.length === 0 ? null :
                                         searchQuery.map(el => {
                                             return (
-
                                                 <TableRow key={el._id}>
                                                     <TableCell>
-                                                        {el.title.length > 20 ? el.title.substring(0, 20) + '...' : el.title}
+                                                        {el.title.length > 30 ? el.title.substring(0, 30) + '...' : el.title}
                                                     </TableCell>
                                                     <TableCell>
                                                         {el.status}
@@ -69,17 +65,12 @@ const TableList = () => {
                                                         {el.targetGroup}
                                                     </TableCell>
                                                     <TableCell>
-                                                        {el.content.length > 20 ? el.content.substring(0, 20) + '...' : el.content}
+                                                        {el.content.length > 30 ? el.content.substring(0, 30) + '...' : el.content}
                                                     </TableCell>
-                                                    {/* <TableCell>
-                                                        {el.created ? toMalaysiaTime(el.created) : null}
-                                                    </TableCell> */}
                                                     <TableCell>
                                                         {el.created ? convertDateFormat(el.created) : null}
                                                     </TableCell>
                                                 </TableRow>
-
-
                                             )
                                         })
                                 }
@@ -89,7 +80,6 @@ const TableList = () => {
                     :
                     <CircularIndeterminate />
             }
-
         </>
 
     )

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import { tableCellClasses } from '@mui/material/TableCell';
-import CircularIndeterminate from "./progress";
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -35,7 +35,6 @@ const SearchList = () => {
     return (
 
         <>
-
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -51,11 +50,9 @@ const SearchList = () => {
                     </TableHead>
                     <TableBody>
                         {
-
                             searchQuery.length === 0 ? null :
                                 searchQuery.map(el => {
                                     return (
-
                                         <TableRow key={el._id}>
                                             <TableCell>
                                                 {el.title.length > 20 ? el.title.substring(0, 20) + '...' : el.title}
@@ -79,18 +76,13 @@ const SearchList = () => {
                                                 {el.end ? el.end.substring(0, 10) : null}
                                             </TableCell>
                                         </TableRow>
-
-
                                     )
                                 })
                         }
                     </TableBody>
                 </Table>
             </TableContainer>
-
-
         </>
-
     )
 }
 

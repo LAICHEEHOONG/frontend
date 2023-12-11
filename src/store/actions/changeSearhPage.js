@@ -1,19 +1,14 @@
 
-import * as action from './index';
-import axios from 'axios';
 import { searchAllPage, setAlert, setSearchResData } from './index';
 import { search2Fn } from '../../util/tool';
 import { searchProgressAction } from './index';
 
 
 export const paginationSearchPage = (page) => {
-    // console.log(`page: ${page}`)
+
     return async (dispatch, getState) => {
         try {
-
-            // dispatch(action.changeSearchPage(page));
             const searchData = getState().search2;
-            // console.log(searchData)
             dispatch(searchProgressAction(true));
             search2Fn(searchData)
                 .then(data => {
