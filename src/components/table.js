@@ -45,7 +45,9 @@ const TableList = () => {
                                     <StyledTableCell>Status</StyledTableCell>
                                     <StyledTableCell align="center">Target Group</StyledTableCell>
                                     <StyledTableCell>Content</StyledTableCell>
+                                    {/* <StyledTableCell>Created Date</StyledTableCell> */}
                                     <StyledTableCell>Created Date</StyledTableCell>
+                                    <StyledTableCell>Created Time</StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -67,8 +69,11 @@ const TableList = () => {
                                                     <TableCell>
                                                         {el.content.length > 30 ? el.content.substring(0, 30) + '...' : el.content}
                                                     </TableCell>
-                                                    <TableCell>
-                                                        {el.created ? convertDateFormat(el.created) : null}
+                                                    <TableCell align="center">
+                                                        {el.created ? convertDateFormat(el.created)[0] : null}
+                                                    </TableCell>
+                                                    <TableCell align="center">
+                                                        {el.created ? convertDateFormat(el.created)[1] : null}
                                                     </TableCell>
                                                 </TableRow>
                                             )
