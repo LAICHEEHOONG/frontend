@@ -5,6 +5,7 @@ export const search2Fn = async (obj) => {
     try {
         const response = await axios.post('/api/find', { searchData: obj });
         const data = response.data;
+        // console.log(data)
         return data;
     } catch (error) {
         console.log(error);
@@ -20,8 +21,6 @@ export function convertDateFormat(dateString) {
     const year = date.getFullYear();
     let hours = date.getHours();
     let minutes = date.getMinutes();
-    // let seconds = date.getSeconds();
-    // const formattedDate = `${month}/${day}/${year} , ${hours}:${minutes}:${seconds}`;
     const monthsText = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     let amPm = 'AM';
 

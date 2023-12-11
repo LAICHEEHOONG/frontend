@@ -1,9 +1,21 @@
 import {
     ALLPAGE, PAGE, CLEARPAGE, ALERT, SEARCH_TEXT,
-    SEARCH_DATE_START, SEARCH_DATE_END, SEARCH_RES_DATA, CLEAR_RES_DATA, SEARCH_ALL_PAGE,
-    CHANGE_SEARCH_PAGE, CHANGE_TABLE, SEARCH_RESET, SEARCH_PROGRESS
+    SEARCH_DATE_START, SEARCH_DATE_END, SEARCH_RES_DATA, 
+    CLEAR_RES_DATA, SEARCH_ALL_PAGE, CHANGE_SEARCH_PAGE, 
+    CHANGE_TABLE, SEARCH_RESET, SEARCH_PROGRESS,
+    SEARCH_STATUS, SEARCH_TARGET_GROUP
 } from '../type';
 
+
+export const searchStatusAction = (status) => ({
+    type: SEARCH_STATUS,
+    payload: status
+})
+
+export const searchTargetGroupAction = (targetGroup) => ({
+    type: SEARCH_TARGET_GROUP,
+    payload: targetGroup
+})
 
 
 export const searchProgressAction = (booleaN) => ({

@@ -70,10 +70,10 @@ const TableList2 = () => {
                                                     <TableCell>
                                                         {el.content.length > 30 ? el.content.substring(0, 30) + '...' : el.content}
                                                     </TableCell>
-                                                    <TableCell align="center">
+                                                    <TableCell >
                                                         {el.created ? convertDateFormat(el.created)[0] : null}
                                                     </TableCell>
-                                                    <TableCell align="center">
+                                                    <TableCell >
                                                         {el.created ? convertDateFormat(el.created)[1] : null}
                                                     </TableCell>
                                                 </TableRow>

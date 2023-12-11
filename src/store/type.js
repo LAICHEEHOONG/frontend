@@ -15,4 +15,6 @@ export const CHANGE_SEARCH_PAGE = 'changeSearchPage';
 export const CHANGE_TABLE = 'changeTable';
 export const SEARCH_RESET = 'searchReset';
 export const SEARCH_PROGRESS = 'searchProgress';
+export const SEARCH_STATUS = 'searchStatus';
+export const SEARCH_TARGET_GROUP = 'searchTargetGroup';
 

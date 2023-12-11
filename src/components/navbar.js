@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import BasicDateRangePicker from "./datePicker";
+import StatusSelect from "./statusSelect";
+import TargetGroupSelect from "./targetGroupSelect";
 import { search2Fn } from "../util/tool";
 import {
     setSearchText, setSearchResData, clearResData,
@@ -17,7 +19,12 @@ const Navbar = () => {
     const [disableBtn, setDisableBtn] = useState(false);
 
     useEffect(() => {
-        if (searchData.text === '' && searchData.startDate === '' && searchData.endDate === '') {
+        if (searchData.text === '' 
+        && !searchData.startDate 
+        && !searchData.endDate
+        && searchData.status === ''
+        && searchData.targetGroup === ''
+        ) {
             setDisableBtn(true)
         } else {
             setDisableBtn(false)
@@ -70,6 +77,12 @@ const Navbar = () => {
                     <input className="form-control me-2 nav_input" type="search" placeholder="Search Title" aria-label="Search"
                         onChange={handleInputChange}
                     />
+                    <div>
+                        <StatusSelect />
+                    </div>
+                    <div className='target_group_select'>
+                        <TargetGroupSelect />
+                    </div>
                     <div className="date_picker">
                         <BasicDateRangePicker />
                     </div>
@@ -77,7 +90,7 @@ const Navbar = () => {
                     <button className="btn btn-success" disabled={disableBtn}
                         onClick={submitHandle}
                     >Search</button>
-                    <button className="btn btn-danger clear_btn" disabled={disableBtn}
+                    <button className="btn btn-danger clear_btn" 
                         onClick={clearSearchFn}
                     >Clear</button>
                 </form>
