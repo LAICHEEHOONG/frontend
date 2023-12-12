@@ -27,9 +27,11 @@ export default function StatusSelect() {
           label="Status"
           onChange={handleChange}
         >
-          <MenuItem value={'In Progress'}>In Progress</MenuItem>
+          
           <MenuItem value={'Completed'}>Completed</MenuItem>
           <MenuItem value={'Terminate'}>Terminate</MenuItem>
+          <MenuItem value={'In Progress'}>In Progress</MenuItem>
+          <MenuItem value={'New'}>New</MenuItem>
           <MenuItem value="">None</MenuItem>
         </Select>
       </FormControl>

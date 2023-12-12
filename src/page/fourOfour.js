@@ -1,6 +1,10 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { checkDataStatusAndTargetGroup } from "../util/tool";
 
 const FourOFour = () => {
+    useEffect(() => {
+        checkDataStatusAndTargetGroup();
+    }, [])
 
     return (
         <div>

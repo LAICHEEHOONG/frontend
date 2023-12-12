@@ -11,6 +11,7 @@ import { styled } from '@mui/material/styles';
 import { tableCellClasses } from '@mui/material/TableCell';
 import { convertDateFormat } from "../util/tool";
 import CircularIndeterminate from "./progress";
+import '../style/table.css';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -58,22 +59,22 @@ const TableList2 = () => {
                                             return (
 
                                                 <TableRow key={el._id}>
-                                                    <TableCell>
+                                                    <TableCell className="table_cell">
                                                         {el.title.length > 30 ? el.title.substring(0, 30) + '...' : el.title}
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell className="table_cell">
                                                         {el.status}
                                                     </TableCell>
-                                                    <TableCell align="center">
+                                                    <TableCell align="center" className="table_cell">
                                                         {el.targetGroup}
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell className="table_cell">
                                                         {el.content.length > 30 ? el.content.substring(0, 30) + '...' : el.content}
                                                     </TableCell>
-                                                    <TableCell >
+                                                    <TableCell className="table_cell">
                                                         {el.created ? convertDateFormat(el.created)[0] : null}
                                                     </TableCell>
-                                                    <TableCell >
+                                                    <TableCell className="table_cell" >
                                                         {el.created ? convertDateFormat(el.created)[1] : null}
                                                     </TableCell>
                                                 </TableRow>

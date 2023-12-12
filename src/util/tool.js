@@ -40,6 +40,41 @@ export function convertDateFormat(dateString) {
     return result;
 }
 
+export const checkDataStatusAndTargetGroup = async () => {
+    try {
+        const res = await axios.get('/api/checkStatus');
+        const data = res.data.result;
+        const allStatus = [];
+        const allTargetGroup = [];
+        const statusObj = {};
+        const targetGroupObj = {};
+
+        data.forEach(el => {
+            allStatus.push(el.status);
+            allTargetGroup.push(el.targetGroup);
+        })
+
+        for(let i = 0; i < allStatus.length; i++) {
+            if(statusObj[allStatus[i]]) {
+                statusObj[allStatus[i]]++;
+            } else {
+                statusObj[allStatus[i]] = 1
+            }
+            if(targetGroupObj[allTargetGroup[i]]) {
+                targetGroupObj[allTargetGroup[i]]++;
+            } else {
+                targetGroupObj[allTargetGroup[i]] = 1;
+            }
+        }
+        
+        console.log('statusObj', statusObj);
+        console.log('targetGroupObj', targetGroupObj);
+        
+    } catch(error) {
+        console.log(error)
+    }
+}
+
 // January -> Jan
 // February -> Feb
 // March -> Mar

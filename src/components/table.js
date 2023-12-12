@@ -7,10 +7,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import ArrowTooltips from "./tooltip";
+// import Button from '@mui/material/Button';
+// import Tooltip from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
 import { tableCellClasses } from '@mui/material/TableCell';
 import CircularIndeterminate from "./progress";
 import { convertDateFormat } from "../util/tool";
+import '../style/table.css';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -22,6 +26,15 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
         fontSize: 14,
     },
 }));
+
+
+// function ArrowTooltips({tag, str}) {
+//     return (
+//       <Tooltip title={str} arrow>
+//         {tag}
+//       </Tooltip>
+//     );
+//   }
 
 const TableList = () => {
 
@@ -45,9 +58,9 @@ const TableList = () => {
                                     <StyledTableCell>Status</StyledTableCell>
                                     <StyledTableCell align="center">Target Group</StyledTableCell>
                                     <StyledTableCell>Content</StyledTableCell>
-                                    {/* <StyledTableCell>Created Date</StyledTableCell> */}
                                     <StyledTableCell>Created Date</StyledTableCell>
                                     <StyledTableCell>Created Time</StyledTableCell>
+                                    {/* <ArrowTooltips tag={<StyledTableCell>Created Time</StyledTableCell>} str={'Created Time'} /> */}
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -57,22 +70,35 @@ const TableList = () => {
                                         searchQuery.map(el => {
                                             return (
                                                 <TableRow key={el._id}>
-                                                    <TableCell>
+                                                    <ArrowTooltips
+                                                        str={el.title ? el.title : null}
+                                                        tag={
+                                                            <TableCell className="table_cell">
+                                                                {el.title.length > 30 ? el.title.substring(0, 30) + '...' : el.title}
+                                                            </TableCell>
+                                                        }
+                                                    />
+
+
+                                                    {/* <TableCell className="table_cell">
                                                         {el.title.length > 30 ? el.title.substring(0, 30) + '...' : el.title}
-                                                    </TableCell>
-                                                    <TableCell>
+                                                    </TableCell> */}
+                                                    <TableCell className="table_cell">
                                                         {el.status}
                                                     </TableCell>
-                                                    <TableCell align="center">
+
+
+
+                                                    <TableCell align="center" className="table_cell">
                                                         {el.targetGroup}
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell className="table_cell">
                                                         {el.content.length > 30 ? el.content.substring(0, 30) + '...' : el.content}
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell className="table_cell">
                                                         {el.created ? convertDateFormat(el.created)[0] : null}
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell className="table_cell">
                                                         {el.created ? convertDateFormat(el.created)[1] : null}
                                                     </TableCell>
                                                 </TableRow>
@@ -91,6 +117,13 @@ const TableList = () => {
 }
 
 export default TableList;
+
+
+// Assuming you have some other component or JSX tag named 'AnotherTag'
+// const AnotherTag = <div>Another Tag</div>;
+
+// Using ArrowTooltips component elsewhere, passing AnotherTag as an additional component
+{/* <ArrowTooltips component={<YourComponent />} str="Tooltip Text"/> */ }
 
 
 
