@@ -17,4 +17,7 @@ export const SEARCH_RESET = 'searchReset';
 export const SEARCH_PROGRESS = 'searchProgress';
 export const SEARCH_STATUS = 'searchStatus';
 export const SEARCH_TARGET_GROUP = 'searchTargetGroup';
+export const STATUS_TARGETGROUP_TYPES = 'statusTargetGroupTypes';
+export const SCREEN_WIDTH = 'screenWidth';
+export const SELECTOR_WIDTH = 'selectorWidth';
 

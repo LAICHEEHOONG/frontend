@@ -3,9 +3,26 @@ import {
     SEARCH_DATE_START, SEARCH_DATE_END, SEARCH_RES_DATA, 
     CLEAR_RES_DATA, SEARCH_ALL_PAGE, CHANGE_SEARCH_PAGE, 
     CHANGE_TABLE, SEARCH_RESET, SEARCH_PROGRESS,
-    SEARCH_STATUS, SEARCH_TARGET_GROUP
+    SEARCH_STATUS, SEARCH_TARGET_GROUP, STATUS_TARGETGROUP_TYPES,
+    SELECTOR_WIDTH, SCREEN_WIDTH
+
 } from '../type';
 
+
+export const screenWidthAction = (width) => ({
+    type: SCREEN_WIDTH,
+    payload: width
+})
+
+export const selectorWidthAction = (width) => ({
+    type: SELECTOR_WIDTH,
+    payload: width
+})
+
+export const statusTargetGroupTypesAction = (arr) => ({
+    type: STATUS_TARGETGROUP_TYPES,
+    payload: arr
+})
 
 export const searchStatusAction = (status) => ({
     type: SEARCH_STATUS,

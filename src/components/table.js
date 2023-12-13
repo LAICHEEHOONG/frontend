@@ -8,8 +8,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import ArrowTooltips from "./tooltip";
-// import Button from '@mui/material/Button';
-// import Tooltip from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
 import { tableCellClasses } from '@mui/material/TableCell';
 import CircularIndeterminate from "./progress";
@@ -27,15 +25,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
 }));
 
-
-// function ArrowTooltips({tag, str}) {
-//     return (
-//       <Tooltip title={str} arrow>
-//         {tag}
-//       </Tooltip>
-//     );
-//   }
-
 const TableList = () => {
 
     let pagesData = useSelector(state => state.page.pageNum);
@@ -50,7 +39,9 @@ const TableList = () => {
         <>
             {
                 searchQuery.length !== 0 ?
-                    <TableContainer component={Paper}>
+                    // <TableContainer component={Paper} style={{ maxHeight: 900, overflow: 'auto' }} >
+                    //     <Table sx={{ minWidth: 650 }} stickyHeader aria-label="sticky table">
+                    <TableContainer component={Paper} >
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
@@ -58,9 +49,8 @@ const TableList = () => {
                                     <StyledTableCell>Status</StyledTableCell>
                                     <StyledTableCell align="center">Target Group</StyledTableCell>
                                     <StyledTableCell>Content</StyledTableCell>
-                                    <StyledTableCell>Created Date</StyledTableCell>
-                                    <StyledTableCell>Created Time</StyledTableCell>
-                                    {/* <ArrowTooltips tag={<StyledTableCell>Created Time</StyledTableCell>} str={'Created Time'} /> */}
+                                    <StyledTableCell >Created Date</StyledTableCell>
+                                    {/* <StyledTableCell>Created Time</StyledTableCell> */}
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -69,7 +59,7 @@ const TableList = () => {
                                     searchQuery.length === 0 ? null :
                                         searchQuery.map(el => {
                                             return (
-                                                <TableRow key={el._id}>
+                                                <TableRow key={el._id} hover>
                                                     <ArrowTooltips
                                                         str={el.title ? el.title : null}
                                                         tag={
@@ -79,28 +69,29 @@ const TableList = () => {
                                                         }
                                                     />
 
-
-                                                    {/* <TableCell className="table_cell">
-                                                        {el.title.length > 30 ? el.title.substring(0, 30) + '...' : el.title}
-                                                    </TableCell> */}
                                                     <TableCell className="table_cell">
                                                         {el.status}
                                                     </TableCell>
 
-
-
                                                     <TableCell align="center" className="table_cell">
                                                         {el.targetGroup}
                                                     </TableCell>
-                                                    <TableCell className="table_cell">
-                                                        {el.content.length > 30 ? el.content.substring(0, 30) + '...' : el.content}
+
+                                                    <ArrowTooltips
+                                                        str={el.content ? el.content : null}
+                                                        tag={
+                                                            <TableCell className="table_cell">
+                                                                {el.content.length > 30 ? el.content.substring(0, 30) + '...' : el.content}
+                                                            </TableCell>
+                                                        }
+                                                    />
+
+                                                    <TableCell className="table_cell" >
+                                                        {el.created ? `${convertDateFormat(el.created)[0]} - ${convertDateFormat(el.created)[1]}` : null}
                                                     </TableCell>
-                                                    <TableCell className="table_cell">
-                                                        {el.created ? convertDateFormat(el.created)[0] : null}
-                                                    </TableCell>
-                                                    <TableCell className="table_cell">
+                                                    {/* <TableCell className="table_cell">
                                                         {el.created ? convertDateFormat(el.created)[1] : null}
-                                                    </TableCell>
+                                                    </TableCell> */}
                                                 </TableRow>
                                             )
                                         })

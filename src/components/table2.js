@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import ArrowTooltips from "./tooltip";
 import { styled } from '@mui/material/styles';
 import { tableCellClasses } from '@mui/material/TableCell';
 import { convertDateFormat } from "../util/tool";
@@ -47,36 +48,49 @@ const TableList2 = () => {
                                     <StyledTableCell align="center">Target Group</StyledTableCell>
                                     <StyledTableCell>Content</StyledTableCell>
                                     <StyledTableCell>Created Date</StyledTableCell>
-                                    <StyledTableCell>Created Time</StyledTableCell>
+                                    {/* <StyledTableCell>Created Time</StyledTableCell> */}
                                 </TableRow>
                             </TableHead>
                             <TableBody>
 
                                 {
-
                                     searchResArr.length === 0 ? null :
                                         searchResArr.map(el => {
                                             return (
 
-                                                <TableRow key={el._id}>
-                                                    <TableCell className="table_cell">
-                                                        {el.title.length > 30 ? el.title.substring(0, 30) + '...' : el.title}
-                                                    </TableCell>
+                                                <TableRow key={el._id} hover>
+                                                    <ArrowTooltips
+                                                        tag={
+                                                            <TableCell className="table_cell">
+                                                                {el.title.length > 30 ? el.title.substring(0, 30) + '...' : el.title}
+                                                            </TableCell>
+                                                        }
+                                                        str={el.title ? el.title : null}
+                                                    />
                                                     <TableCell className="table_cell">
                                                         {el.status}
                                                     </TableCell>
                                                     <TableCell align="center" className="table_cell">
                                                         {el.targetGroup}
                                                     </TableCell>
+                                                    <ArrowTooltips
+                                                        tag={
+                                                            <TableCell className="table_cell">
+                                                                {el.content.length > 30 ? el.content.substring(0, 30) + '...' : el.content}
+                                                            </TableCell>
+                                                        }
+                                                        str={el.content ? el.content : null}
+                                                    />
                                                     <TableCell className="table_cell">
-                                                        {el.content.length > 30 ? el.content.substring(0, 30) + '...' : el.content}
+                                                        {el.created ? `${convertDateFormat(el.created)[0]} - ${convertDateFormat(el.created)[1]}` : null}
                                                     </TableCell>
+                                                    {/* 
                                                     <TableCell className="table_cell">
                                                         {el.created ? convertDateFormat(el.created)[0] : null}
                                                     </TableCell>
                                                     <TableCell className="table_cell" >
                                                         {el.created ? convertDateFormat(el.created)[1] : null}
-                                                    </TableCell>
+                                                    </TableCell> */}
                                                 </TableRow>
                                             )
                                         })

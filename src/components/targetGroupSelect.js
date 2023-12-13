@@ -10,15 +10,20 @@ import { searchTargetGroupAction } from '../store/actions/index';
 export default function TargetGroupSelect() {
 
   const dispatch = useDispatch();
+  const targetGroupTypes = useSelector(state => state.statusTargetGroupTypes.targetGroupType);
   const targetGroup = useSelector(state => state.search2.targetGroup);
+  const mobileState = useSelector(state => state.mobileMode)
 
   const handleChange = (event) => {
-    const targetValue = event.target.value;
+    let targetValue = event.target.value;
     dispatch(searchTargetGroupAction(targetValue));
   };
 
+  //ipadAir - ipad mini width: 431 
+  //iphoneSE width: 343
+
   return (
-    <Box sx={{ minWidth: 120, width: 140 }}>
+    <Box sx={{ width: mobileState.width }} >
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Target Group</InputLabel>
         <Select
@@ -28,10 +33,21 @@ export default function TargetGroupSelect() {
           label="Target Group"
           onChange={handleChange}
         >
-          <MenuItem value={'User'}>User</MenuItem>
+          {
+            targetGroupTypes.length === 0 || !targetGroupTypes ?
+              null :
+
+              targetGroupTypes.map((el, i) => {
+                return (
+                  <MenuItem key={`${el}${i}`} value={el}>{el}</MenuItem>
+                )
+              })
+
+          }
+          {/* <MenuItem value={'User'}>User</MenuItem>
           <MenuItem value={'Agent'}>Agent</MenuItem>
           <MenuItem value={'Guest'}>Guest</MenuItem>
-          <MenuItem value="">None</MenuItem>
+          <MenuItem value={'All'}>All</MenuItem> */}
         </Select>
       </FormControl>
     </Box>

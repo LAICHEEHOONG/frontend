@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import BasicDateRangePicker from "./datePicker";
-import StatusSelect from "./statusSelect";
-import TargetGroupSelect from "./targetGroupSelect";
+import { Button } from "@mui/material";
+import More from "./more";
 import { search2Fn, checkDataStatusAndTargetGroup } from "../util/tool";
 import {
     setSearchText, setSearchResData, clearResData,
@@ -12,11 +11,10 @@ import {
 import '../style/navbar2.css';
 
 
-const Navbar = () => {
+const NavbarMobile = () => {
 
     const dispatch = useDispatch();
     let searchData = useSelector(state => state.search2);
-    const screenWidth = useSelector(state => state.mobileMode.screenPixel);
     const [disableBtn, setDisableBtn] = useState(false);
 
     useEffect(() => {
@@ -87,22 +85,26 @@ const Navbar = () => {
                     <input className="form-control me-2 nav_input" type="search" placeholder="Search Title" aria-label="Search"
                         onChange={handleInputChange}
                     />
-                    <div>
-                        <StatusSelect />
-                    </div>
-                    <div className='target_group_select'>
-                        <TargetGroupSelect />
-                    </div>
-                    <div className="date_picker">
-                        {screenWidth >= 1000 ? <BasicDateRangePicker /> : null}
-                    </div>
 
+                    {/* <Button variant="contained"
+                    disabled={disableBtn}
+                    onClick={submitHandle}
+                    >Search</Button> */}
                     <button className="btn btn-success" disabled={disableBtn}
                         onClick={submitHandle}
                     >Search</button>
                     <button className="btn btn-danger clear_btn"
                         onClick={clearSearchFn}
                     >Clear</button>
+                    {/* <Button 
+                    style={{marginLeft: '10px'}}
+                    variant="contained" color='error'
+                    onClick={clearSearchFn}
+                    >Clear</Button> */}
+
+                    <div style={{ marginLeft: '10px' }}>
+                        <More />
+                    </div>
                 </form>
             </div>
         </nav>
@@ -110,5 +112,5 @@ const Navbar = () => {
 
 }
 
-export default Navbar;
+export default NavbarMobile;
 
