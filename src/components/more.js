@@ -140,14 +140,16 @@ export default function More() {
     );
 
     return (
-        <div style={{ width: '73px' }} >
+        <div >
             {['bottom'].map((anchor) => (
                 <React.Fragment key={anchor}>
-                    <MoreVertIcon />
+                    {/* <MoreVertIcon onClick={toggleDrawer(anchor, true)} /> */}
                     <Button
-                        style={{ color: 'black', marginLeft: '-15px' }}
+                        style={{ color: 'black', marginLeft: '-15px', fontSize: '0.7rem' }}
                         onClick={toggleDrawer(anchor, true)}
-                    >More</Button>
+                    >
+                        <MoreVertIcon />
+                    </Button>
                     <Drawer
                         anchor={anchor}
                         open={state[anchor]}

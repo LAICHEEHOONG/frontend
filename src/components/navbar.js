@@ -16,7 +16,6 @@ const Navbar = () => {
 
     const dispatch = useDispatch();
     let searchData = useSelector(state => state.search2);
-    const screenWidth = useSelector(state => state.mobileMode.screenPixel);
     const [disableBtn, setDisableBtn] = useState(false);
 
     useEffect(() => {

@@ -15,6 +15,7 @@ const NavbarMobile = () => {
 
     const dispatch = useDispatch();
     let searchData = useSelector(state => state.search2);
+    const screenWidth = useSelector(state => state.mobileMode.screenPixel);
     const [disableBtn, setDisableBtn] = useState(false);
 
     useEffect(() => {
@@ -79,38 +80,47 @@ const NavbarMobile = () => {
     }
 
     return (
+        // <nav className="navbar bg-body-tertiary">
+        //     <div className="container-fluid">
+        //         <form className="d-flex" role="search">
+        //             <input className="form-control me-2 nav_input" type="search" placeholder="Search Title" aria-label="Search"
+        //                 onChange={handleInputChange}
+        //             />
+        //             <button className="btn btn-success" disabled={disableBtn}
+        //                 onClick={submitHandle}
+        //             >Search</button>
+        //             <button className="btn btn-danger clear_btn"
+        //                 onClick={clearSearchFn}
+        //             >Clear</button>
+
+        //             <div>
+        //                 <More />
+        //             </div>
+        //         </form>
+        //     </div>
+        // </nav>
         <nav className="navbar bg-body-tertiary">
-            <div className="container-fluid">
+            <div className="container-fluid d-flex justify-content-between align-items-center">
                 <form className="d-flex" role="search">
                     <input className="form-control me-2 nav_input" type="search" placeholder="Search Title" aria-label="Search"
-                        onChange={handleInputChange}
-                    />
-
-                    {/* <Button variant="contained"
-                    disabled={disableBtn}
-                    onClick={submitHandle}
-                    >Search</Button> */}
-                    <button className="btn btn-success" disabled={disableBtn}
-                        onClick={submitHandle}
-                    >Search</button>
-                    <button className="btn btn-danger clear_btn"
-                        onClick={clearSearchFn}
-                    >Clear</button>
-                    {/* <Button 
-                    style={{marginLeft: '10px'}}
-                    variant="contained" color='error'
-                    onClick={clearSearchFn}
-                    >Clear</Button> */}
-
-                    <div style={{ marginLeft: '10px' }}>
-                        <More />
-                    </div>
+                        style={screenWidth < 440 ? { width: '130px' } : { width: '140px' }}
+                        onChange={handleInputChange} />
+                    <button className="btn btn-success" disabled={disableBtn} onClick={submitHandle}>Search</button>
+                    <button className="btn btn-danger clear_btn" onClick={clearSearchFn}>Clear</button>
                 </form>
+                <div>
+                    <More />
+                </div>
             </div>
         </nav>
+
     )
 
 }
 
 export default NavbarMobile;
+
+
+// when screen width < 440px , input width
+
 
