@@ -94,7 +94,7 @@ const Navbar = () => {
                         <TargetGroupSelect />
                     </div>
                     <div className="date_picker">
-                        {screenWidth >= 1000 ? <BasicDateRangePicker /> : null}
+                        <BasicDateRangePicker />
                     </div>
 
                     <button className="btn btn-success" disabled={disableBtn}

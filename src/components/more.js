@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -26,7 +26,6 @@ import {
 export default function More() {
 
     const buttonWidth = useSelector(state => state.mobileMode.width);
-    const screenWidth = useSelector(state => state.mobileMode.screenPixel);
     const dispatch = useDispatch();
     let searchData = useSelector(state => state.search2);
     const [disableBtn, setDisableBtn] = useState(false);
@@ -124,7 +123,7 @@ export default function More() {
             </List>
             <List>
                 <ListItem>
-                    {screenWidth > 1000 ? null : <BasicDateRangePicker />}
+                   <BasicDateRangePicker />
                 </ListItem>
             </List>
             <Divider />
@@ -137,16 +136,6 @@ export default function More() {
                     >Search</button>
                 </ListItem>
             </List>
-            {/* <List>
-                <ListItem>
-                    <button className="btn btn-danger"
-                        style={{ width: buttonWidth, marginTop: '-20px' }}
-                        onClick={clearSearchFn}
-                    >Clear</button>
-                </ListItem>
-            </List> */}
-
-
         </Box>
     );
 

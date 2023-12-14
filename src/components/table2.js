@@ -29,6 +29,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const TableList2 = () => {
 
     const searchResArr = useSelector(state => state.searchRes);
+    const screenWidth = useSelector(state => state.mobileMode.screenPixel);
     const searchProgressStatus = useSelector(state => state.searchProgress);
 
     return (
@@ -39,16 +40,15 @@ const TableList2 = () => {
                     ?
                     <CircularIndeterminate />
                     :
-                    <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableContainer component={Paper} style={screenWidth < 1000 ? { maxHeight: 900, overflow: 'auto' } : null}  >
+                        <Table sx={{ minWidth: 650 }} stickyHeader aria-label="sticky table">
                             <TableHead>
                                 <TableRow>
-                                    <StyledTableCell>Title</StyledTableCell>
-                                    <StyledTableCell>Status</StyledTableCell>
-                                    <StyledTableCell align="center">Target Group</StyledTableCell>
-                                    <StyledTableCell>Content</StyledTableCell>
-                                    <StyledTableCell>Created Date</StyledTableCell>
-                                    {/* <StyledTableCell>Created Time</StyledTableCell> */}
+                                    <StyledTableCell style={screenWidth < 1000 ? { fontSize: '1.2rem' } : null} >Title</StyledTableCell>
+                                    <StyledTableCell style={screenWidth < 1000 ? { fontSize: '1.2rem' } : null}>Status</StyledTableCell>
+                                    <StyledTableCell style={screenWidth < 1000 ? { fontSize: '1.2rem' } : null} align="center">Target Group</StyledTableCell>
+                                    <StyledTableCell style={screenWidth < 1000 ? { fontSize: '1.2rem' } : null}>Content</StyledTableCell>
+                                    <StyledTableCell style={screenWidth < 1000 ? { fontSize: '1.2rem' } : null}>Created Date</StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -61,36 +61,41 @@ const TableList2 = () => {
                                                 <TableRow key={el._id} hover>
                                                     <ArrowTooltips
                                                         tag={
-                                                            <TableCell className="table_cell">
+                                                            <TableCell className={screenWidth < 1000 ? 'table_cell_mobile' : 'table_cell'}>
                                                                 {el.title.length > 30 ? el.title.substring(0, 30) + '...' : el.title}
                                                             </TableCell>
                                                         }
                                                         str={el.title ? el.title : null}
                                                     />
-                                                    <TableCell className="table_cell">
+                                                    <TableCell className={screenWidth < 1000 ? 'table_cell_mobile' : 'table_cell'}>
                                                         {el.status}
                                                     </TableCell>
-                                                    <TableCell align="center" className="table_cell">
+                                                    <TableCell align="center" className={screenWidth < 1000 ? 'table_cell_mobile' : 'table_cell'}>
                                                         {el.targetGroup}
                                                     </TableCell>
                                                     <ArrowTooltips
                                                         tag={
-                                                            <TableCell className="table_cell">
+                                                            <TableCell className={screenWidth < 1000 ? 'table_cell_mobile' : 'table_cell'}>
                                                                 {el.content.length > 30 ? el.content.substring(0, 30) + '...' : el.content}
                                                             </TableCell>
                                                         }
                                                         str={el.content ? el.content : null}
                                                     />
-                                                    <TableCell className="table_cell">
+
+                                                    {
+                                                        screenWidth < 1000 ?
+                                                            <TableCell className={screenWidth < 1000 ? 'table_cell_mobile' : 'table_cell'} >
+                                                                {el.created ? `${convertDateFormat(el.created)[0]}` : null}
+                                                            </TableCell>
+                                                            :
+                                                            <TableCell className={screenWidth < 1000 ? 'table_cell_mobile' : 'table_cell'} >
+                                                                {el.created ? `${convertDateFormat(el.created)[0]} - ${convertDateFormat(el.created)[1]}` : null}
+                                                            </TableCell>
+                                                    }
+                                                    {/* <TableCell className="table_cell">
                                                         {el.created ? `${convertDateFormat(el.created)[0]} - ${convertDateFormat(el.created)[1]}` : null}
-                                                    </TableCell>
-                                                    {/* 
-                                                    <TableCell className="table_cell">
-                                                        {el.created ? convertDateFormat(el.created)[0] : null}
-                                                    </TableCell>
-                                                    <TableCell className="table_cell" >
-                                                        {el.created ? convertDateFormat(el.created)[1] : null}
                                                     </TableCell> */}
+
                                                 </TableRow>
                                             )
                                         })

@@ -1,6 +1,5 @@
-import React from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+
 
 export const search2Fn = async (obj) => {
 
@@ -40,6 +39,17 @@ export function convertDateFormat(dateString) {
     // console.log(dateFormat2);
     const result = [dateFormat, timeFormat];
     return result;
+}
+
+export const covertDateFormatDatePicker = (date) => {
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let year = date.getFullYear();
+
+    month = !month ? 'MM' : month;
+    day = !day ? 'DD' : day;
+    year = !year ? 'YYYY' : year;
+    return `${day}/${month}/${year}`;
 }
 
 export const checkDataStatusAndTargetGroup = async () => {
@@ -82,7 +92,7 @@ export const checkDataStatusAndTargetGroup = async () => {
             statusObj,
             targetGroupObj
         };
-        
+
         return result;
 
     } catch (error) {
@@ -91,10 +101,3 @@ export const checkDataStatusAndTargetGroup = async () => {
     }
 }
 
-// let obj = {
-//     a: '1',
-//     b: '2',
-//     c: '3'
-// }
-
-// how to return ['a', 'b', 'c']
